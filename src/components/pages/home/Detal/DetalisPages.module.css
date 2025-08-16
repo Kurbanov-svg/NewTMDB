@@ -1,0 +1,274 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 90vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 150px;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  padding-top: 200px;
+  /* right: 50px; */
+}
+
+.overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.5) 40%,
+    rgba(0, 0, 0, 0.8) 70%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  z-index: 0;
+}
+
+.detailsWrapper {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+}
+
+.container {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 40px;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+.titleRu {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.subRow {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.titleEn {
+  font-size: 22px;
+  opacity: 0.8;
+}
+
+.age {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.ratings {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.rating {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.purple {
+  background: #9b4de0;
+}
+
+.gray {
+  background: #3c3c3c;
+}
+
+.black {
+  background: #111;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.watch {
+  background: #a445f7;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.watch:hover {
+  background: #8b36d6;
+}
+
+.trailer {
+  background: transparent;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 2px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.trailer:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.logo,
+.movieLogo {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.detailsBlock {
+  /* margin-top: 20px; */
+  padding-top: 40px;
+  background: #000;
+  color: #fff;
+}
+
+.detailsBlock p {
+  margin-left: 60px;
+}
+.detailsBlock span {
+  margin-left: 60px;
+}
+
+.overview {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  color: #ddd;
+}
+
+.moreInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.moreInfo span {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 12px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.sectionDivider {
+  height: 2px;
+  margin: 40px 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+}
+
+.topCastWrapper {
+  background: #000;
+  margin-left: 50px;
+  padding-bottom: 50px;
+}
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85); /* чуть темнее, чтобы атмосфера была */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px; /* немного пространства вокруг */
+}
+
+.modalContent {
+  position: relative;
+  width: 90vw; /* почти весь экран по ширине */
+  max-width: 1280px; /* максимум FullHD */
+  aspect-ratio: 16 / 9; /* классический формат видео */
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
+  background: #000;
+  overflow: hidden;
+}
+
+.modalContent iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+  display: block;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 32px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  line-height: 38px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  z-index: 10;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 0, 0, 0.8);
+}

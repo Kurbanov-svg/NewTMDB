@@ -1,0 +1,156 @@
+.topCast {
+  margin-top: 40px;
+  color: #fff;
+}
+
+.heading {
+  /* font-size: 1.5rem;
+  margin-bottom: 20px; */
+}
+
+.castGrid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.castCard {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.castCard:hover {
+  transform: translateY(-5px);
+}
+
+.castImage {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.castName {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.castList {
+  display: flex;
+}
+
+.castRole {
+  font-size: 0.8rem;
+  color: #bbb;
+}
+
+.topCastContainer {
+  margin-top: 10px;
+}
+
+/* .title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+} */
+
+.castList {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
+}
+
+.castList::-webkit-scrollbar {
+  height: 6px;
+}
+
+.castList::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.actorCard {
+  flex: 0 0 auto;
+  width: 120px;
+  text-align: center;
+}
+
+.actorImage {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.actorName {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.actorRole {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.topCast {
+  margin-top: 0;
+  padding: 20px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  color: #fff;
+}
+
+.heading {
+}
+
+body {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  color: #fff;
+}
+
+.actorCard {
+  flex: 0 0 auto;
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.actorImage {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.actorName,
+.actorRole {
+  display: block;
+  width: 100%;
+  text-align: center;
+  word-break: break-word;
+}
+
+.topCast .title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #fff;
+}
