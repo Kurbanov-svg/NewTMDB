@@ -1,10 +1,23 @@
 import { useEffect, useRef } from "react";
-import styles from "./DetalVidios.module.css";
 import { useNavigate } from "react-router-dom";
+import styles from "./DetalVidios.module.css";
 
-const DetalVidios = ({ movies, loading }) => {
+export interface MovieType {
+  id: number;
+  title?: string;
+  name?: string;
+  poster_path?: string | null;
+}
+
+interface DetalVidiosProps {
+  movies: MovieType[];
+  loading: boolean;
+}
+
+const DetalVidios: React.FC<DetalVidiosProps> = ({ movies, loading }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
@@ -13,16 +26,15 @@ const DetalVidios = ({ movies, loading }) => {
     let animationFrameId: number;
 
     const smoothScroll = () => {
-      if (scrollContainer) {
-        scrollContainer.scrollLeft += scrollAmount;
+      scrollContainer.scrollLeft += scrollAmount;
 
-        if (
-          scrollContainer.scrollLeft + scrollContainer.clientWidth >=
-          scrollContainer.scrollWidth
-        ) {
-          scrollContainer.scrollLeft = 0;
-        }
+      if (
+        scrollContainer.scrollLeft + scrollContainer.clientWidth >=
+        scrollContainer.scrollWidth
+      ) {
+        scrollContainer.scrollLeft = 0;
       }
+
       animationFrameId = requestAnimationFrame(smoothScroll);
     };
 
@@ -32,7 +44,7 @@ const DetalVidios = ({ movies, loading }) => {
   }, []);
 
   if (loading) return <p style={{ color: "#fff" }}>Загрузка...</p>;
-  if (!movies?.length) return null;
+  if (!movies.length) return null;
 
   return (
     <div className={styles.similarContainer}>
@@ -40,9 +52,9 @@ const DetalVidios = ({ movies, loading }) => {
       <div ref={scrollRef} className={styles.grid}>
         {movies.map((movie) => (
           <div
-            onClick={() => navigate(`/movie/${movie.id}`)}
             key={movie.id}
             className={styles.card}
+            onClick={() => navigate(`/movie/${movie.id}`)}
           >
             <img
               src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}

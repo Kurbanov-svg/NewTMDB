@@ -5,36 +5,32 @@ import { MdOutlineOndemandVideo } from "react-icons/md";
 import { useGetDetailsQuery } from "../../../../api/detalis";
 import TopCast from "../TopCast/TopCast";
 import { useGetSimilarQuery } from "../../../../api/detalVidios";
-import DetalVidios from "../detalVidios/DetalVidios";
 import { useGetVideosQuery } from "../../../../api/detalTrailers";
 import DetalTrailers from "../DetalTrailers/DetalTrailers";
 import styles from "./DetalisPages.module.css";
 import { useState, useEffect } from "react";
+import DetalVidios, { type MovieType } from "../detalVidios/DetalVidios";
 
 const DetalisPages = () => {
   const { id, type } = useParams<{ id: string; type: string }>();
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Управление модалкой
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data: similar, isLoading: similarLoading } = useGetSimilarQuery(
-    type,
-    id
+    type!,
+    id!
   );
   const { data: videos } = useGetVideosQuery(type!, id!);
-
-  const { data: detailsData, error } = useGetDetailsQuery(type || "", id || "");
+  const { data: detailsData, error } = useGetDetailsQuery(type!, id!);
 
   useEffect(() => {
     if (!selectedKey && videos?.results?.length) {
       const firstTrailer = videos.results.find(
         (v) =>
           v.site?.toLowerCase() === "youtube" &&
-          v.type?.toLowerCase() === "trailer" &&
-          v.key
+          v.type?.toLowerCase() === "trailer"
       );
-      if (firstTrailer?.key) {
-        setSelectedKey(firstTrailer.key);
-      }
+      if (firstTrailer?.key) setSelectedKey(firstTrailer.key);
     }
   }, [videos, selectedKey]);
 
@@ -45,7 +41,6 @@ const DetalisPages = () => {
   const backdrop = detailsData.backdrop_path
     ? `${baseUrl}original${detailsData.backdrop_path}`
     : "";
-
   const logoPath = detailsData.images?.logos?.[0]?.file_path;
   const logo = logoPath ? `${baseUrl}original${logoPath}` : null;
 
@@ -103,12 +98,7 @@ const DetalisPages = () => {
               <button className={styles.watch}>Смотреть от 49 ₽</button>
               <button
                 className={styles.trailer}
-                onClick={() => {
-                  if (videos?.key) {
-                    setSelectedKey(videos.key);
-                    setIsModalOpen(true);
-                  }
-                }}
+                onClick={() => setIsModalOpen(true)}
               >
                 <FaPlay size={12} style={{ marginRight: "6px" }} /> Трейлер
               </button>
@@ -137,8 +127,11 @@ const DetalisPages = () => {
       <div className={styles.sectionDivider}></div>
 
       <div className={styles.topCastWrapper}>
-        <TopCast type={type || ""} id={id || ""} />
-        <DetalVidios movies={similar?.results} loading={similarLoading} />
+        <TopCast type={type!} id={id!} />
+        <DetalVidios
+          movies={similar?.results as MovieType[]}
+          loading={similarLoading}
+        />
         <DetalTrailers
           videos={videos?.results || []}
           setSelectedKey={(key) => {
@@ -151,10 +144,7 @@ const DetalisPages = () => {
       {isModalOpen && selectedKey && (
         <div
           className={styles.modalOverlay}
-          onClick={() => {
-            setSelectedKey(null);
-            setIsModalOpen(false);
-          }}
+          onClick={() => setIsModalOpen(false)}
         >
           <div
             className={styles.modalContent}
@@ -162,10 +152,7 @@ const DetalisPages = () => {
           >
             <button
               className={styles.closeBtn}
-              onClick={() => {
-                setSelectedKey(null);
-                setIsModalOpen(false);
-              }}
+              onClick={() => setIsModalOpen(false)}
             >
               ✕
             </button>

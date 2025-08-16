@@ -11,6 +11,15 @@ type VideoItem = {
 
 type VideosResponse = {
   results: VideoItem[];
+  key?: string;
+};
+
+export type MovieType = {
+  id: number;
+  title?: string;
+  name?: string;
+  backdrop_path?: string;
+  poster_path?: string;
 };
 
 export const useGetVideosQuery = (type: string, id: string) => {

@@ -2,6 +2,13 @@ import { useGetContentInfinite } from "../../../../api/tw";
 import styles from "./TWshow.module.css";
 import { Link } from "react-router-dom";
 
+interface ShowType {
+  id: number;
+  name: string;
+  poster_path: string;
+  vote_average: number;
+}
+
 const TWshow = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useGetContentInfinite("tv");
@@ -12,7 +19,7 @@ const TWshow = () => {
     <div>
       <div className={styles.filmscontainer}>
         {data?.pages.flatMap((page) =>
-          page.results.map((show) => (
+          page.results.map((show: ShowType) => (
             <Link
               key={show.id}
               to={`/tv/${show.id}`}

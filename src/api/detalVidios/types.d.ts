@@ -8,5 +8,5 @@ interface Movie {
 interface DetalVidiosProps {
   movies: Movie[];
   loading: boolean;
-  results: string;
+  results?: Movie[];
 }

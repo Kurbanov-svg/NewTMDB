@@ -7,7 +7,8 @@ const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
 const Trending = () => {
   const [sortHighToLow, setSortHighToLow] = useState(true);
-  const [timeFilter, setTimeFilter] = useState("day");
+  const [timeFilter, setTimeFilter] = useState<"day" | "week">("day");
+
   const navigate = useNavigate();
 
   const {
